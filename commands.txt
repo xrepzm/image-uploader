@@ -1,0 +1,28 @@
+mkdir image-uploader
+cd image-uploader/
+git flow init -fd
+laravel new -q
+php artisan app:name ImageUploader
+vim .editorconfig -y
+git add .
+git commit -m "Laraval installed"
+git flow feature start upload-preparation
+php artisan make:controller Api/v1/UploadImageController
+php artisan make:request Upload/UploadImageRequest
+php artisan make:test UploadTest
+vim tests/Uploadtest.php -y
+git add .
+git commit -m "Upload preparation done, test closed"
+git flow feature finish upload-preparation
+git flow feature start upload-model
+php artisan make:model Models/Image -m
+vim tests/ExampleTest.php -y
+git add .
+git commit -m "Image model created"
+git flow feature finish upload-model
+git flow release start v0.1
+vim commands.txt -y
+git add .
+git commit -m "Commands listed in commands.txt"
+git flow release finish v0.1
+
