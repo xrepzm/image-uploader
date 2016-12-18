@@ -1,0 +1,6 @@
+mkdir image-uploader
+cd image-uploader/
+git flow init -fd
+laravel new -q
+php artisan app:name ImageUploader
+touch .editorconfig
