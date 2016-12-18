@@ -7,6 +7,8 @@ use Illuminate\Http\UploadedFile;
 
 class ExampleTest extends TestCase
 {
+    // use DatabaseMigrations;
+
     public function testBasicExample()
     {
         $this->visit('/')
@@ -27,13 +29,18 @@ class ExampleTest extends TestCase
 
         $this->json('POST', '/api/upload-image', ['image' => $file])
              ->assertResponseOk()
-             ->seeJson([
-                 'errors' => false,
+             ->seeJsonStructure([
+                 'errors',
                  'data' => [
-                     'path' => $file_path,
+                     'path' => [],
                  ],
              ])
              ->assertFileIsReadable(public_path($file_path));
+
+        $this->seeInDatabase('images', [
+            'filename' => $name,
+            'path' => 'storage/uploads/images',
+        ]);
 
         @unlink(public_path($file_path));
     }
