@@ -4,6 +4,7 @@ namespace ImageUploader\Http\Controllers\Api\v1\Upload;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use ImageUploader\Models\Image;
 
 trait Uploadable
 {
@@ -28,9 +29,14 @@ trait Uploadable
                 ], 422);
             }
 
+            $image = Image::create([
+                'filename' => time() . '.jpg',
+                'path' => 'storage/' . $this->destination,
+            ]);
+
             return response()->json([
                 'errors' => false,
-                'data' => compact('path'),
+                'data' => compact('path', 'image'),
             ]);
         }
     }
