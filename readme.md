@@ -1,5 +1,8 @@
 Edit Your own .env file with database settings, then follow the commands below.
 
+Install Laravel
+$ composer update
+
 PHPUnit testing:
 $ vendor\bin\phpunit
 
