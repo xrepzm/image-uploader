@@ -13,4 +13,4 @@ In Postman create new POST request with [image-uploader.dev/api/upload-image] an
 
 It is a very simple setup, but as simple as is :)
 
-![valami](https://postimg.org/image/ulk6mbgyv/ "Pitty putty")
+[![Képernyőfelvétel (2).png](https://s23.postimg.org/4d91wxwvf/K_perny_felv_tel_2.png)](https://postimg.org/image/ulk6mbgyv/)
