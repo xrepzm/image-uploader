@@ -12,3 +12,5 @@ $ php artisan migrate:refresh
 In Postman create new POST request with [image-uploader.dev/api/upload-image] and in the Body section add a new key 'image', then choose the value's type file and find some image in your system - upload size is limited in laravel's request. You get the response.
 
 It is a very simple setup, but as simple as is :)
+
+![valami](https://postimg.org/image/ulk6mbgyv/ "Pitty putty")
