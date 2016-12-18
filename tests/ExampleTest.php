@@ -7,7 +7,7 @@ use Illuminate\Http\UploadedFile;
 
 class ExampleTest extends TestCase
 {
-    // use DatabaseMigrations;
+    use DatabaseMigrations;
 
     public function testBasicExample()
     {
