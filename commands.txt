@@ -7,8 +7,10 @@ vim .editorconfig -y
 git add .
 git commit -m "Laraval installed"
 git flow feature start upload-preparation
+php artisan storage:link
 php artisan make:controller Api/v1/UploadImageController
 php artisan make:request Upload/UploadImageRequest
+vim app/Http/Controllers/Api/v1/Upload/Auploadable.php -y
 php artisan make:test UploadTest
 vim tests/Uploadtest.php -y
 git add .
@@ -25,4 +27,3 @@ vim commands.txt -y
 git add .
 git commit -m "Commands listed in commands.txt"
 git flow release finish v0.1
-
