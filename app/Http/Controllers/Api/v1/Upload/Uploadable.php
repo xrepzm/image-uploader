@@ -30,7 +30,7 @@ trait Uploadable
             }
 
             $image = Image::create([
-                'filename' => time() . '.jpg',
+                'filename' => time() . '.jpeg',
                 'path' => 'storage/' . $this->destination,
             ]);
 
