@@ -19,8 +19,9 @@ trait Uploadable
     public function upload(Request $request) {
         if ($request->hasFile($this->fieldname)) {
             $this->file = $request->{$this->fieldname};
+            $time = time();
 
-            if ( !$path = $this->store($this->file)) {
+            if ( ! $path = $this->store($this->file, $time)) {
                 return response()->json([
                     'errors' => [
                         ['store' => 'Store was not completed!'],
@@ -30,7 +31,7 @@ trait Uploadable
             }
 
             $image = Image::create([
-                'filename' => time() . '.jpeg',
+                'filename' => $time . '.' . $this->file->extension(),
                 'path' => 'storage/' . $this->destination,
             ]);
 
@@ -41,11 +42,13 @@ trait Uploadable
         }
     }
 
-    protected function store(UploadedFile $image)
+    protected function store(UploadedFile $image, $time)
     {
-        $filename = time() . '.' . $image->extension();
-        $path = $image->storeAs($this->destination, $filename, $this->disk);
+        if ($image->isValid()) {
+            $filename = $time . '.' . $image->extension();
+            return 'storage/' . $image->storeAs($this->destination, $filename, $this->disk);
+        }
 
-        return !$image->isValid() ?: 'storage/' . $path;
+        return false;
     }
 }
